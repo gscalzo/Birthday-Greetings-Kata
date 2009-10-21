@@ -4,6 +4,7 @@ require 'message_observers'
 require 'net/smtp'
 require 'gserver'
 require 'birthday_service'
+require 'employee_repository'
 
 
 describe "Greetings Service" do
@@ -29,7 +30,7 @@ describe "Greetings Service" do
 	
 	context "with a file with one person born today" do
 		before :each do
-			@birthdayService.send_greetings "employee_data.txt", "2008/10/08"
+			@birthdayService.send_greetings EmployeeRepository.new("employee_data.txt"), "2008/10/08"
 		end
 
 		it "should send one email" do
